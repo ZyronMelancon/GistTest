@@ -83,12 +83,23 @@ int mostCommon(int a[], int size)
 
 void swapNoTemp(int a, int b)
 {
-	b = b * b;
+	b = b + a;
+	a = b - a;
+	b = b - a;
 }
 
-void stringSort(string strings[])
+void stringSort(string strings[], int size)
 {
-
+	for (int x = 0; x < size - 1; x++)
+	{
+		for (int y = 0; y < size - 1; y++)
+			if (strings[y].front() > strings[y + 1].front())
+			{
+				string swap = strings[y];
+				strings[y] = strings[y + 1];
+				strings[y + 1] = swap;
+			}
+	}
 }
 
 void main()
@@ -136,4 +147,14 @@ void main()
 	value in the array that appears the most times */
 	int nums2[5] = { 5, 8, 2, 5, 4 };
 	mostCommon(nums2, 5);
+
+
+	string stringies[4];
+	stringies[0] = "Hello";
+	stringies[1] = "Greetings";
+	stringies[2] = "Salutations";
+	stringies[3] = "Welcome";
+
+	stringSort(stringies, 4);
+
 }
